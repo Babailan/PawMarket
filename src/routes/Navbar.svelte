@@ -111,7 +111,11 @@
         id="tooltip"
         role="tooltip"
       >
-        <p class="font-semibold">{$user.fullname}</p>
+        <p class="font-semibold">
+          {$user.username == ""
+            ? $user.firstname + " " + $user.lastname
+            : $user.username}
+        </p>
         <hr />
         <a
           class="flex hover:bg-slate-500 hover:text-white p-2 rounded-lg"

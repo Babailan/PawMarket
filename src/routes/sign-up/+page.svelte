@@ -1,23 +1,27 @@
 <script>
+  // Destructure imports
   import { validateEmail } from "../../libs/validation/validateEmail";
   import { goto } from "$app/navigation";
   import { user } from "../../stores";
   import { onMount } from "svelte";
+  import Input from "./Input.svelte";
+
   onMount(() => {
     document.title = "Sign Up | Pawmarket";
-    if ($user != undefined) {
+    if ($user !== undefined) {
       goto("/");
     }
   });
+
   let valid = true;
-  let email = "babailanxx@gmail.com";
+  let email = "";
   let emailError = "";
-  let password = "ronnelbabailan";
+  let password = "";
   let passwordError = "";
-  let username = "Rongrong";
-  let usernameError = "";
-  let fullname = "Ronnel Babailan Dilao";
-  let fullnameError = "";
+  let firstname = "";
+  let firstnameError = "";
+  let lastname = "";
+  let lastnameError = "";
 
   async function submit() {
     if (!validateEmail(email)) {
@@ -28,51 +32,53 @@
       passwordError = "Password must be greater than 7";
       valid = false;
     }
-    if (email == "") {
+    if (email === "") {
       emailError = "Email is required.";
       valid = false;
     }
 
-    if (password == "") {
+    if (password === "") {
       passwordError = "Password is required.";
       valid = false;
     }
-    if (fullname == "") {
-      fullnameError = "Fullname is required.";
+
+    if (firstname === "") {
+      firstnameError = "Firstname is required.";
       valid = false;
     }
-    if (username == "") {
-      usernameError = "Username is required.";
+    if (lastname === "") {
+      lastnameError = "Lastname is required.";
       valid = false;
     }
 
-    if (!validateEmail(email)) {
-      emailError = "Email is invalid.";
-      valid = false;
-    }
-    if (password.length < 7) {
-      passwordError = "Password must be greater than 7";
-      valid = false;
-    }
     if (!valid) {
+      valid = true;
       return;
     }
+
     const request = await fetch("/api/sign-up", {
       method: "POST",
       body: JSON.stringify({
-        fullname,
-        username,
         email,
         password,
+        lastname,
+        firstname,
       }),
     });
-    const { exist, acknowledge } = await request.json();
-    if (exist) {
-      emailError = "Email already exists.";
-    }
-    if (acknowledge) {
-      user.setUser();
-      goto("/");
+
+    try {
+      const { exist, acknowledge } = await request.json();
+
+      if (exist) {
+        emailError = "Email already exists.";
+      }
+
+      if (acknowledge) {
+        user.setUser();
+        goto("/");
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   }
 </script>
@@ -100,67 +106,27 @@
       </button>
 
       <div class="flex gap-2 flex-col text-sm">
-        <!-- EMAIL INPUT -->
-        <input
-          class={`border-gray-300 focus:rounded-none outline-none border-[0.1em] p-2 ${
-            emailError != ""
-              ? "border-red-700 text-red-600 placeholder:text-red-600"
-              : ""
-          }`}
+        <Input
           bind:value={email}
-          type="text"
-          placeholder="Email"
-          on:input={() => (emailError = "")}
+          bind:error={emailError}
+          placeholder={"Email"}
         />
-        {#if emailError != ""}
-          <small class="text-red-600">{emailError}</small>
-        {/if}
-
-        <!-- PASSWORD INPUT -->
-        <input
-          class={`border-gray-300 focus:rounded-none outline-none border-[0.1em] p-2 ${
-            passwordError != ""
-              ? "border-red-700 text-red-600 placeholder:text-red-600"
-              : ""
-          }`}
+        <Input
           bind:value={password}
-          type="password"
-          placeholder="Password"
-          on:input={() => (passwordError = "")}
+          bind:error={passwordError}
+          placeholder={"Password"}
         />
-        {#if passwordError != ""}
-          <small class="text-red-600">{passwordError}</small>
-        {/if}
-        <!-- FULLNAME INPUT -->
-        <input
-          class={`border-gray-300 focus:rounded-none outline-none border-[0.1em] p-2 ${
-            fullnameError != ""
-              ? "border-red-700 text-red-600 placeholder:text-red-600"
-              : ""
-          }`}
-          bind:value={fullname}
-          type="text"
-          placeholder="Fullname"
-          on:input={() => (fullnameError = "")}
+
+        <Input
+          bind:value={firstname}
+          bind:error={firstnameError}
+          placeholder={"First Name"}
         />
-        {#if fullnameError != ""}
-          <small class="text-red-600">{fullnameError}</small>
-        {/if}
-        <!-- USERNAME INPUT -->
-        <input
-          class={`border-gray-300 focus:rounded-none outline-none border-[0.1em] p-2 ${
-            usernameError != ""
-              ? "border-red-700 text-red-600 placeholder:text-red-600"
-              : ""
-          }`}
-          bind:value={username}
-          type="text"
-          placeholder="Username"
-          on:input={() => (usernameError = "")}
+        <Input
+          bind:value={lastname}
+          bind:error={lastnameError}
+          placeholder={"Last Name"}
         />
-        {#if usernameError != ""}
-          <small class="text-red-600">{usernameError}</small>
-        {/if}
       </div>
 
       <div class="flex flex-col gap-2 mt-2">

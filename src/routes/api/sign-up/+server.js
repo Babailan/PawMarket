@@ -2,8 +2,9 @@ import { json } from "@sveltejs/kit";
 import { MongoClient } from "mongodb";
 
 export async function POST({ request, cookies }) {
-  const { email, username, password, fullname } = await request.json();
+  const { email, password, lastname, firstname } = await request.json();
 
+  const fullname = firstname + lastname;
   const url = "mongodb://localhost:27017";
   const client = new MongoClient(url);
   await client.connect();
@@ -19,15 +20,19 @@ export async function POST({ request, cookies }) {
       email,
       password,
       fullname,
-      username,
+      username: "",
+      lastname,
+      firstname,
     });
     cookies.set(
       "user",
       JSON.stringify({
         email,
         password,
+        lastname,
+        username: "",
+        firstname,
         fullname,
-        username,
         _id: submit.insertedId,
       }),
       { httpOnly: false, path: "/" }

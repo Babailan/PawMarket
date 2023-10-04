@@ -4,6 +4,8 @@
   import "../app.css";
   import { user } from "../stores";
   import { page } from "$app/stores";
+  import EditUserNameModal from "./EditUserNameModal.svelte";
+
   user.setUser();
 </script>
 
@@ -15,6 +17,6 @@
   <div class="min-h-screen">
     <slot />
   </div>
-
+  <!-- <EditUserNameModal /> -->
   <Footer />
 </main>
