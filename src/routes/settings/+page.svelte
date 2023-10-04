@@ -23,6 +23,7 @@
   }
 
   onMount(() => {
+    document.title = "Settings | Pawmarket";
     if (!$user) {
       goto("/");
     }

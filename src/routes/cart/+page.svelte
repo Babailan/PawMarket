@@ -4,7 +4,7 @@
   import { goto } from "$app/navigation";
   let n = 0;
   afterUpdate(() => {
-    console.log("update");
+    document.title = "Dog Cart | Pawmarket";
     if ($user == undefined) {
       goto("/");
     }

@@ -105,7 +105,7 @@
 
       <div
         bind:this={userToolTip}
-        class="bg-slate-100 w-[320px] p-5 gap-2 flex flex-col rounded-md {showToolTip
+        class="bg-zinc-100 w-[320px] p-5 gap-2 z-10 flex flex-col rounded-md {showToolTip
           ? 'block'
           : 'hidden'}"
         id="tooltip"
