@@ -60,12 +60,16 @@
       class="bg-sky-500 hover:bg-sky-600 p-2 text-white rounded-lg text-lg"
       >Save</button
     >
-    <hr class="my-10" />
+    <hr class="my-5" />
     <Input bind:value={current_password} label={"Current Password"} />
     <Input bind:value={new_password} label={"New Password"} />
     <button
       class="bg-sky-500 hover:bg-sky-600 p-2 text-white rounded-lg text-lg"
       >Update Password</button
+    >
+    <button
+      class="bg-red-600 hover:bg-red-700 p-2 text-white rounded-lg text-lg my-10"
+      >Delete Account</button
     >
   </div>
 </div>

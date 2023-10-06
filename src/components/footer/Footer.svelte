@@ -1,4 +1,5 @@
-<footer class="p-3 justify-center flex flex-col text-center text-gray-600">
+<footer class="justify-center flex flex-col text-center text-gray-600 mt-20">
+  <hr class="py-5" />
   <small class="flex gap-3 justify-center">
     <a href="/terms" class="hover:underline">Terms</a>
     <a href="/privacy" class="hover:underline">Privacy</a>

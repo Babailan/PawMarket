@@ -25,7 +25,7 @@
     });
     function windowResize() {
       width = window.innerWidth;
-      swiper.params.slidesPerView = width >= 768 ? 1.2 : 1;
+      swiper.params.slidesPerView = width >= 768 ? 1.1 : 1;
     }
     windowResize();
     window.addEventListener("resize", windowResize);
