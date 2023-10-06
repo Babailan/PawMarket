@@ -81,38 +81,53 @@
 
       <div
         bind:this={userToolTip}
-        class="bg-zinc-100 max-w-xs w-[320px] text-sm p-5 gap-2 z-10 flex flex-col rounded-md {showToolTip
+        class="bg-white shadow-2xl max-w-xs w-[320px] text-sm z-10 py-2 flex flex-col rounded-md {showToolTip
           ? 'block'
-          : 'hidden'}"
+          : 'hidden'} "
         id="tooltip"
         role="tooltip"
       >
-        <p>
-          {$user.username == "" ? $user.firstname : $user.username}
-        </p>
-        <p class="font-semibold">
-          {$user.email}
-        </p>
+        <div class="p-3">
+          <p class="capitalize text-lg font-bold">
+            {$user.username == ""
+              ? $user.firstname + " " + $user.lastname
+              : $user.username}
+          </p>
+          <p class="text-zinc-500">
+            {$user.email}
+          </p>
+        </div>
         <hr />
         <a
-          class="flex hover:bg-sky-600 hover:text-white p-2 rounded-lg items-center"
+          class="flex p-3 items-center hover:bg-zinc-100 transition-all delay-100"
           href="/settings"
           on:click={removeToolTipListener}
         >
-          <span class="material-symbols-outlined mr-2"> settings </span>Settings
+          <span class="material-symbols-outlined mr-2"> settings </span>Account
+          settings
+        </a>
+        <a
+          class="flex p-3 items-center hover:bg-zinc-100 transition-all delay-100"
+          href="/settings"
+          on:click={removeToolTipListener}
+        >
+          <span class="material-symbols-outlined mr-2"> lock </span>Privacy
+        </a>
+        <a
+          class="flex p-3 items-center hover:bg-zinc-100 transition-all delay-100"
+          href="/settings"
+          on:click={removeToolTipListener}
+        >
+          <span class="material-symbols-outlined mr-2"> gavel </span>Terms
         </a>
         <button
           on:click={() => {
             user.clearUser();
             removeToolTipListener();
           }}
-          class="flex hover:bg-sky-600 hover:text-white p-2 rounded-lg items-center"
-          ><span class="material-symbols-outlined mr-2"> logout </span>Log Out</button
+          class="flex p-3 items-center hover:bg-zinc-100 transition-all"
+          ><span class="material-symbols-outlined mr-2"> logout </span>Sign Out</button
         >
-        <small>
-          <a href="/terms" class="hover:underline">Terms</a>
-          <a href="/privacy" class="hover:underline">Privacy</a>
-        </small>
       </div>
     {/if}
   </div>
