@@ -1,5 +1,5 @@
 <script>
-  import { validateEmail } from "../../libs/validation/validateEmail";
+  import { validateEmail } from "lib/validation/validateEmail";
   import { goto } from "$app/navigation";
   import { user } from "../../stores";
   import { onMount } from "svelte";
@@ -41,6 +41,10 @@
       emailError = "Email doesn't exist.";
       return;
     }
+    if (data.exist && data.acknowledge == 0) {
+      passwordError = "Password is incorrect.";
+      return;
+    }
     if (data.acknowledge == 1) {
       user.setUser();
       goto("/");
@@ -72,7 +76,10 @@
           bind:value={email}
           type="text"
           placeholder="Email"
-          on:input={() => (emailError = "")}
+          on:input={() => {
+            emailError = "";
+            passwordError = "";
+          }}
         />
         {#if emailError != ""}
           <small class="text-red-600">{emailError}</small>

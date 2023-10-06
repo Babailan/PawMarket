@@ -1,9 +1,9 @@
 <script>
   // Destructure imports
-  import { user } from "../../stores";
-  import Input from "./Input.svelte";
+  import { user } from "src/stores";
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
+  import Input from "components/input/SettingsInput.svelte";
 
   // Group related variables
   let email = "";

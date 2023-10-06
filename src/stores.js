@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 import cookie from "js-cookie";
 
-function account() {
+function createUser() {
   const { set, subscribe, update } = writable(undefined);
   return {
     subscribe,
@@ -14,10 +14,26 @@ function account() {
     },
     set,
     clearUser: () => {
-      update((v) => undefined);
+      update(() => undefined);
       cookie.remove("user");
     },
   };
 }
 
-export let user = account();
+function createLoader() {
+  const { set, subscribe, update } = writable(undefined);
+  return {
+    set,
+    subscribe,
+    update,
+    enable: () => {
+      set(true);
+    },
+    disable: () => {
+      set(false);
+    },
+  };
+}
+
+export let user = createUser();
+export let loader = createLoader();

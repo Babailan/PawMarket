@@ -9,7 +9,6 @@ export async function POST({ request, cookies }) {
   await client.connect();
   const database = client.db("pawmarket");
   const usersCollection = database.collection("users");
-
   const exist = await usersCollection.findOne({ email });
 
   if (!!exist) {
@@ -18,8 +17,10 @@ export async function POST({ request, cookies }) {
         httpOnly: false,
         path: "/",
       });
+      return json({ exist: true, acknowledge: 1 });
+    } else {
+      return json({ exist: true, acknowledge: 0 });
     }
-    return json({ exist: true, acknowledge: 1 });
   } else {
     return json({
       exist: false,

@@ -1,10 +1,8 @@
 <script>
   import { onMount } from "svelte";
-  import { user } from "../stores";
+  import { user } from "src/stores";
   import { createPopper } from "@popperjs/core";
   import { goto } from "$app/navigation";
-  let search = "";
-  let inputFocus = false;
   let userToolTip, userProfile;
   let showToolTip = false;
   let popperInstance;
@@ -33,13 +31,14 @@
         },
       ],
     });
+
     return () => {
       window.removeEventListener("click", toolTipListener);
     };
   });
 </script>
 
-<nav class="grid grid-cols-3">
+<nav class="flex justify-between gap-20">
   <!-- left col -->
   <div>
     <a class="flex items-center cursor-pointer w-fit" href="/">
@@ -47,31 +46,8 @@
       <img src="/pawmarket.png" width="160px" alt="Logo PNG" />
     </a>
   </div>
-  <!-- center col -->
-  <div
-    class="flex justify-center border-gray-300 {inputFocus &&
-      'border-gray-800'} border-2 rounded-lg overflow-hidden px-5 py-2"
-  >
-    <div class="w-full flex items-center">
-      <input
-        class="w-full outline-none"
-        placeholder={!inputFocus ? "Search for pets & accessories" : ""}
-        bind:value={search}
-        on:focusin={() => {
-          inputFocus = true;
-        }}
-        on:focusout={() => {
-          inputFocus = false;
-        }}
-      />
-      <span
-        class="material-symbols-outlined text-gray-400 {inputFocus &&
-          'text-gray-800'} cursor-pointer"
-      >
-        search
-      </span>
-    </div>
-  </div>
+  <!-- center col when high -->
+
   <!-- right col -->
   <div class="flex gap-2 justify-end items-center">
     <button
@@ -105,20 +81,21 @@
 
       <div
         bind:this={userToolTip}
-        class="bg-zinc-100 w-[320px] p-5 gap-2 z-10 flex flex-col rounded-md {showToolTip
+        class="bg-zinc-100 max-w-xs w-[320px] text-sm p-5 gap-2 z-10 flex flex-col rounded-md {showToolTip
           ? 'block'
           : 'hidden'}"
         id="tooltip"
         role="tooltip"
       >
+        <p>
+          {$user.username == "" ? $user.firstname : $user.username}
+        </p>
         <p class="font-semibold">
-          {$user.username == ""
-            ? $user.firstname + " " + $user.lastname
-            : $user.username}
+          {$user.email}
         </p>
         <hr />
         <a
-          class="flex hover:bg-slate-500 hover:text-white p-2 rounded-lg"
+          class="flex hover:bg-sky-600 hover:text-white p-2 rounded-lg items-center"
           href="/settings"
           on:click={removeToolTipListener}
         >
@@ -129,13 +106,12 @@
             user.clearUser();
             removeToolTipListener();
           }}
-          class="flex hover:bg-slate-500 hover:text-white p-2 rounded-lg"
+          class="flex hover:bg-sky-600 hover:text-white p-2 rounded-lg items-center"
           ><span class="material-symbols-outlined mr-2"> logout </span>Log Out</button
         >
         <small>
-          <a href="/terms">Terms</a>
-          .
-          <a href="/privacy">Privacy</a>
+          <a href="/terms" class="hover:underline">Terms</a>
+          <a href="/privacy" class="hover:underline">Privacy</a>
         </small>
       </div>
     {/if}

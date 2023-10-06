@@ -8,6 +8,6 @@
     <a href="/blog" class="hover:underline">Contact</a>
   </small>
   <small class="mt-3">
-    <div>© 2023 Young Achievers School Of Caloocan INC.</div>
+    <div>© {new Date().getFullYear()} Pawmarket Copyright.</div>
   </small>
 </footer>

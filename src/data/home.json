@@ -1,11 +1,22 @@
 [
   {
-    "path": "/kat-smith.jpg"
+    "path": "/kat-smith.jpg",
+    "dog_name": "Border Collie",
+    "id": 0
   },
   {
-    "path": "/chevanon.jpg"
+    "path": "/chevanon.jpg",
+    "dog_name": "Chevanon",
+    "id": 1
   },
   {
-    "path": "/pepe.jpg"
+    "path": "/pepe.jpg",
+    "dog_name": "Pepe",
+    "id": 2
+  },
+  {
+    "path": "/kat-smith.jpg",
+    "dog_name": "Border Collie",
+    "id": 3
   }
 ]

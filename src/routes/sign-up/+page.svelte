@@ -1,10 +1,10 @@
 <script>
   // Destructure imports
-  import { validateEmail } from "../../libs/validation/validateEmail";
+  import { validateEmail } from "lib/validation/validateEmail";
   import { goto } from "$app/navigation";
-  import { user } from "../../stores";
+  import { user } from "src/stores";
   import { onMount } from "svelte";
-  import Input from "./Input.svelte";
+  import Input from "components/input/RegisterInput.svelte";
 
   onMount(() => {
     document.title = "Sign Up | Pawmarket";
@@ -110,11 +110,13 @@
           bind:value={email}
           bind:error={emailError}
           placeholder={"Email"}
+          type={"email"}
         />
         <Input
           bind:value={password}
           bind:error={passwordError}
           placeholder={"Password"}
+          type={"password"}
         />
 
         <Input
