@@ -15,6 +15,6 @@
   </div>
   <a
     class="bg-zinc-100 hover:bg-zinc-300 text-black p-2 block text-center rounded-md font-medium"
-    href="/dog/{dog_name}">View Information</a
+    href="/dog/{dog_name}">View Details</a
   >
 </div>

@@ -67,13 +67,12 @@
     <button
       bind:this={userProfile}
       class="w-[40px] h-[40px] rounded-full overflow-hidden"
-      on:click={async (e) => {
+      on:click={async () => {
         showToolTip = true;
         await popperInstance.update();
         window.addEventListener("click", toolTipListener);
       }}><img src="/defaultprofile.jpg" alt="" /></button
     >
-
     <div
       bind:this={userToolTip}
       class="bg-white shadow-2xl max-w-xs w-[320px] text-sm z-10 py-2 flex flex-col rounded-md border-[0.1em] {showToolTip

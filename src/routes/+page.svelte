@@ -8,7 +8,7 @@
 
 <HomePageSlider data={homepageData} />
 <div>
-  <h1 class="text-xl font-semibold my-2">What Group Do You Like?</h1>
+  <h1 class="text-xl font-semibold my-2">What Dog Group Do You Like?</h1>
   <div class="grid gap-3 grid-cols-2 md:grid-cols-3">
     {#each dog_groupData as dogsgroup (dogsgroup)}
       <a

@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   export let data;
   import Swiper from "swiper";
-  import { Navigation, Autoplay, EffectCoverflow } from "swiper/modules";
+  import { Navigation, EffectCoverflow } from "swiper/modules";
   let width = 768;
 
   onMount(() => {
@@ -12,27 +12,19 @@
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-      autoplay: {
-        delay: 5000,
-      },
+
       coverflowEffect: {
         rotate: 30,
       },
       effect: "coverflow",
-      modules: [Navigation, Autoplay, EffectCoverflow],
+      modules: [Navigation, EffectCoverflow],
       centeredSlides: true,
-      initialSlide: 1,
+      initialSlide: 1.1,
+      grabCursor: true,
     });
-    function windowResize() {
-      width = window.innerWidth;
-      swiper.params.slidesPerView = width >= 768 ? 1.1 : 1;
-    }
-    windowResize();
-    window.addEventListener("resize", windowResize);
 
     return () => {
       swiper.destroy(true, true);
-      window.removeEventListener("resize", windowResize);
     };
   });
 </script>
@@ -47,17 +39,15 @@
           <img src={item.path} class="pointer-events-none" alt="" />
           <div class="absolute bottom-0 left-0 text-white p-5">
             <div>
-              <h1 class="font-semibold">
+              <h1 class="font-semibold capitalize text-xl">
                 {item.dog_name}
               </h1>
-              <p class="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
+              <p class="text-zinc-100">{item.description}</p>
             </div>
             <div>
               <a
-                class="bg-sky-600 py-2 px-5 my-3 inline-block rounded-md"
-                href="/">Check for information</a
+                class="bg-sky-600 py-2 px-5 my-3 cursor-pointer inline-block rounded-md"
+                href="/dog/{item.dog_name}">Check for information</a
               >
             </div>
           </div>
@@ -83,5 +73,6 @@
       rgba(0, 0, 0, 0.64) 0%,
       rgba(255, 255, 255, 0) 100%
     );
+    pointer-events: none;
   }
 </style>

@@ -3,10 +3,14 @@
   import { onMount } from "svelte";
   import Swiper from "swiper";
   import { Thumbs } from "swiper/modules";
+  import { user } from "src/stores";
   import { numberWithCommas } from "lib/format/numberformat.js";
   const { dog_name, life_expectancy, did_you_know } = data.breed;
   const price = numberWithCommas(data.breed.price);
   const { about } = data.breed.description;
+
+  const _id = data.breed._id;
+  const itemData = data.breed;
 
   onMount(() => {
     document.title = `${
@@ -67,8 +71,8 @@
   </div>
   <div class="py-3 lg:p-5">
     <h1 class="capitalize font-black text-3xl">{dog_name}</h1>
+    <h1 class="capitalize text-2xl font-bold">₱{price}</h1>
     <p class="text-zinc-500 text-sm">{life_expectancy}</p>
-    <h1 class="capitalize text-3xl">₱{price}</h1>
     <div class="my-2">
       <h1 class="font-medium underline">About</h1>
       <p class="text-sm text-zinc-700 text-justify">{@html about}</p>
@@ -79,7 +83,14 @@
     </div>
     <button
       class="w-full p-3 mt-5 bg-sky-600 hover:bg-sky-700 text-white rounded-md"
-      >Add to list</button
+      on:click={async () => {
+        const result = await fetch("/api/cart/add", {
+          method: "POST",
+          body: JSON.stringify({ _id: $user._id, itemData }),
+        });
+        const json = await result.json();
+        console.log(json);
+      }}>Add to list</button
     >
   </div>
 </div>

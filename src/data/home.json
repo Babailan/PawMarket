@@ -1,22 +1,20 @@
 [
   {
     "path": "/kat-smith.jpg",
-    "dog_name": "Border Collie",
+    "dog_name": "border collie",
+    "description": "Borders are athletic, medium-sized herders standing 18 to 22 inches at the shoulder. The overall look is that of a muscular but nimble worker unspoiled by passing fads. Both the rough coat and the smooth coat come in a variety of colors and patterns.",
     "id": 0
   },
   {
     "path": "/chevanon.jpg",
-    "dog_name": "Chevanon",
+    "dog_name": "golden retriever",
+    "description": "The Golden Retriever is a sturdy, muscular dog of medium size, famous for the dense, lustrous coat of gold that gives the breed its name.",
     "id": 1
   },
   {
     "path": "/pepe.jpg",
-    "dog_name": "Pepe",
+    "dog_name": "french bulldog",
+    "description": "The French Bulldog resembles a Bulldog in miniature, except for the large, erect 'bat ears' that are the breed's trademark feature.",
     "id": 2
-  },
-  {
-    "path": "/kat-smith.jpg",
-    "dog_name": "Border Collie",
-    "id": 3
   }
 ]

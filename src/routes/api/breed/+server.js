@@ -18,7 +18,6 @@ export async function POST({ request }) {
         404
       );
     }
-    console.log(result);
 
     return json(result);
   } catch (error) {

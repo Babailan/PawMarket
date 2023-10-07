@@ -14,10 +14,16 @@ export async function POST({ request, cookies }) {
       const passwordMatch = await bcrypt.compare(password, exist.password);
 
       if (passwordMatch) {
-        cookies.set("user", JSON.stringify(exist), {
-          httpOnly: false,
-          path: "/",
-        });
+        // Set specific user information as cookies
+        const { email, username, _id, lastname, firstname } = exist;
+        cookies.set(
+          "user",
+          JSON.stringify({ email, username, _id, lastname, firstname }),
+          {
+            httpOnly: false,
+            path: "/",
+          }
+        );
         return json({ exist: true, acknowledge: 1 });
       } else {
         return json({ exist: true, acknowledge: 0 });
