@@ -1,9 +1,9 @@
 <script>
   export let data;
   import DogCard from "../components/card/DogCard.svelte";
-  import homepageData from "../data/home.json";
+  import homepageData from "data/home.json";
   import HomePageSlider from "components/homepage/HomeSlider.svelte";
-  import dog_groupData from "../data/dog_grouplist.json";
+  import dog_groupData from "data/dog_grouplist.json";
   import Loader from "components/loader/Loader.svelte";
   import { onMount } from "svelte";
   onMount(() => {

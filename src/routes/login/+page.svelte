@@ -19,6 +19,8 @@
 
   async function submit() {
     disabled = true;
+    emailError = "";
+    passwordError = "";
     if (!validateEmail(email)) {
       emailError = "Email is invalid.";
       valid = false;

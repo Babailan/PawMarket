@@ -2,8 +2,7 @@
   import { onMount } from "svelte";
   export let data;
   import Swiper from "swiper";
-  import { Navigation, EffectCoverflow } from "swiper/modules";
-  let width = 768;
+  import { Navigation, EffectCoverflow, Autoplay } from "swiper/modules";
 
   onMount(() => {
     const swiper = new Swiper(".swiper", {
@@ -16,9 +15,13 @@
         rotate: 30,
       },
       effect: "coverflow",
-      modules: [Navigation, EffectCoverflow],
+      modules: [Navigation, EffectCoverflow, Autoplay],
       centeredSlides: true,
       initialSlide: 1.1,
+
+      autoplay: {
+        delay: 5000,
+      },
       grabCursor: true,
     });
 
@@ -38,15 +41,15 @@
           <img src={item.path} class="pointer-events-none" alt="" />
           <div class="absolute bottom-0 left-0 text-white p-5">
             <div>
-              <h1 class="font-semibold capitalize text-xl">
+              <h1 class="font-bold capitalize text-2xl">
                 {item.dog_name}
               </h1>
               <p class="text-zinc-100">{item.description}</p>
             </div>
             <div>
               <a
-                class="bg-sky-600 py-2 px-5 my-3 cursor-pointer inline-block rounded-md"
-                href="/dog/{item.dog_name}">Check for information</a
+                class="bg-sky-600 p-2 hover:bg-sky-700 my-3 cursor-pointer font-medium inline-block rounded-md w-60 text-center"
+                href="/dog/{item.dog_name}">View Details</a
               >
             </div>
           </div>

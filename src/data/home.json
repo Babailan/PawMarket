@@ -16,5 +16,11 @@
     "dog_name": "french bulldog",
     "description": "The French Bulldog resembles a Bulldog in miniature, except for the large, erect 'bat ears' that are the breed's trademark feature.",
     "id": 2
+  },
+  {
+    "path": "chowchow.jpg",
+    "dog_name": "chow chow",
+    "description": "Chows are powerful, compactly built dogs standing as high as 20 inches at the shoulder. ",
+    "id": 3
   }
 ]

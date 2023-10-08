@@ -12,6 +12,7 @@ const config = {
       components: "src/components",
       src: "src",
       lib: "src/lib",
+      data: "src/data",
     },
   },
   preprocess: vitePreprocess(),

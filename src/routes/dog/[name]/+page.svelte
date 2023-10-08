@@ -1,11 +1,13 @@
 <script>
   export let data;
-  import { afterUpdate, onMount } from "svelte";
-  import Swiper from "swiper";
   import ThumbSlider from "components/swiper/Thumbs.svelte";
   import { user } from "src/stores";
   import { numberWithCommas } from "lib/format/numberformat.js";
   import Loader from "components/loader/Loader.svelte";
+  import { onMount } from "svelte";
+  onMount(() => {
+    document.title = data.dog_name;
+  });
 </script>
 
 {#await data.streamed.breed}

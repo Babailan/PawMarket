@@ -109,7 +109,7 @@
       </a>
       <a
         class="flex p-3 items-center hover:bg-zinc-100 transition-all delay-100"
-        href="/settings"
+        href="/terms"
         on:click={removeToolTipListener}
       >
         <span class="material-symbols-outlined mr-2"> gavel </span>Terms

@@ -1,4 +1,6 @@
-<div class="loader" />
+<div class="flex items-center justify-center min-h-[70vh]">
+  <div class="loader" />
+</div>
 
 <style>
   .loader {
