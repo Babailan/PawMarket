@@ -6,7 +6,6 @@
   let width = 768;
 
   onMount(() => {
-    document.title = "Home | Pawmarket";
     const swiper = new Swiper(".swiper", {
       navigation: {
         nextEl: ".swiper-button-next",

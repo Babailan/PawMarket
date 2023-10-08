@@ -22,8 +22,10 @@
   let firstnameError = "";
   let lastname = "";
   let lastnameError = "";
+  let disabled = false;
 
   async function submit() {
+    disabled = true;
     if (!validateEmail(email)) {
       emailError = "Email is invalid.";
       valid = false;
@@ -53,6 +55,7 @@
 
     if (!valid) {
       valid = true;
+      disabled = false;
       return;
     }
 
@@ -71,6 +74,7 @@
 
       if (exist) {
         emailError = "Email already exists.";
+        disabled = false;
       }
 
       if (acknowledge) {
@@ -111,23 +115,27 @@
           bind:error={emailError}
           placeholder={"Email"}
           type={"email"}
+          bind:disabled
         />
         <Input
           bind:value={password}
           bind:error={passwordError}
           placeholder={"Password"}
           type={"password"}
+          bind:disabled
         />
 
         <Input
           bind:value={firstname}
           bind:error={firstnameError}
           placeholder={"First Name"}
+          bind:disabled
         />
         <Input
           bind:value={lastname}
           bind:error={lastnameError}
           placeholder={"Last Name"}
+          bind:disabled
         />
       </div>
 

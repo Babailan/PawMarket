@@ -577,7 +577,7 @@ detect-libc@^2.0.0:
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-2.0.2.tgz#8ccf2ba9315350e1241b88d0ac3b0e1fbd99605d"
   integrity sha512-UX6sGumvvqSaXgdKGUsgZWqcUyIXZ/vZTrlRT/iobiKhGL0zL4d3osHj3uqllWJK+i+sixDS/3COVEOFbupFyw==
 
-devalue@^4.3.1:
+devalue@^4.3.1, devalue@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/devalue/-/devalue-4.3.2.tgz#cc44e4cf3872ac5a78229fbce3b77e57032727b5"
   integrity sha512-KqFl6pOgOW+Y6wJgu80rHpo2/3H07vr8ntR9rkkFIRETewbf5GaYYcakYfiKz89K+sLsuPkQIZaXDMjUObZwWg==

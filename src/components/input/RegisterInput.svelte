@@ -6,6 +6,7 @@
   export let placeholder;
   export let input;
   export let type = "text";
+  export let disabled = false;
 
   onMount(() => {
     if (type) {
@@ -23,6 +24,7 @@
   type="text"
   {placeholder}
   on:input={() => (error = "")}
+  {disabled}
 />
 {#if error != ""}
   <small class="text-red-600">{error}</small>

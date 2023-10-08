@@ -1,8 +1,8 @@
 import { MongoClient } from "mongodb";
-import { browser, dev, building, version } from "$app/environment";
+import { dev } from "$app/environment";
 export async function connect() {
   try {
-    const url = dev
+    const url = false
       ? "mongodb://localhost:27017"
       : "mongodb+srv://pawmarketdev:xVwOrOJiSgCkZp6E@cluster0.tcq95yi.mongodb.net/";
     const init = new MongoClient(url);

@@ -3,6 +3,7 @@
   import { goto } from "$app/navigation";
   import { user } from "../../stores";
   import { onMount } from "svelte";
+  import Input from "components/input/RegisterInput.svelte";
   onMount(() => {
     document.title = "Log in | Pawmarket";
     if ($user != undefined) {
@@ -14,8 +15,10 @@
   let emailError = "";
   let password = "ronnelbabailan";
   let passwordError = "";
+  let disabled = false;
 
   async function submit() {
+    disabled = true;
     if (!validateEmail(email)) {
       emailError = "Email is invalid.";
       valid = false;
@@ -30,6 +33,7 @@
     }
     if (!valid) {
       valid = true;
+      disabled = false;
       return;
     }
     const response = await fetch("/api/login", {
@@ -39,10 +43,12 @@
     const data = await response.json();
     if (!data.exist) {
       emailError = "Email doesn't exist.";
+      disabled = false;
       return;
     }
     if (data.exist && data.acknowledge == 0) {
       passwordError = "Password is incorrect.";
+      disabled = false;
       return;
     }
     if (data.acknowledge == 1) {
@@ -67,37 +73,21 @@
         Sign up to see dogs and accessories in our shop.
       </h1>
       <div class="flex gap-2 flex-col text-sm">
-        <input
-          class={`border-gray-300 focus:rounded-none outline-none border-[0.1em] p-2 ${
-            emailError != ""
-              ? "border-red-700 text-red-600 placeholder:text-red-600"
-              : ""
-          }`}
+        <Input
           bind:value={email}
-          type="text"
-          placeholder="Email"
-          on:input={() => {
-            emailError = "";
-            passwordError = "";
-          }}
+          bind:error={emailError}
+          placeholder={"Email"}
+          type={"Email"}
+          bind:disabled
         />
-        {#if emailError != ""}
-          <small class="text-red-600">{emailError}</small>
-        {/if}
-        <input
-          class={`border-gray-300 focus:rounded-none outline-none border-[0.1em] p-2 ${
-            passwordError != ""
-              ? "border-red-700 text-red-600 placeholder:text-red-600"
-              : ""
-          }`}
+        <Input
           bind:value={password}
-          type="password"
-          placeholder="Password"
-          on:input={() => (passwordError = "")}
+          bind:error={passwordError}
+          placeholder={"Password"}
+          type={"password"}
+          bind:disabled
         />
-        {#if passwordError != ""}
-          <small class="text-red-600">{passwordError}</small>
-        {/if}
+
         <button
           on:click={submit}
           class="cursor-pointer font-semibold p-2 text-center bg-sky-500 text-white rounded-md"

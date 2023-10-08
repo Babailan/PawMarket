@@ -22,6 +22,7 @@
     "@popperjs/core": "^2.11.8",
     "@sveltejs/adapter-vercel": "^3.0.3",
     "bcrypt": "^5.1.1",
+    "devalue": "^4.3.2",
     "js-cookie": "^3.0.5",
     "mongodb": "^6.1.0",
     "swiper": "^10.3.1"
